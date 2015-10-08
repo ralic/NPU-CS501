@@ -11,25 +11,43 @@ package cs501hw2q4_mergesort;
  */
 public class CS501HW2Q4_MergeSort {
 
-    private int[] resultArray;
+    private static int[] inputArray;
+    private static int[] resultArray;
     private int[] tempArray;
     private int length;
 
     public static void main(String a[]) {
 
         int[] array = {95, 70, 82, 125, 48, 63, 18, 53};
-        CS501HW2Q4_MergeSort mms = new CS501HW2Q4_MergeSort();
+        CS501HW2Q4_MergeSort mms = new CS501HW2Q4_MergeSort(array);
         mms.sort(array);
-        System.out.print("Merge Sort result is ");
-        for (int i : array) {
+        mms.printSort();
+    }
+
+    public CS501HW2Q4_MergeSort(int[] array) {
+        inputArray = array;
+        resultArray = tempArray = new int[array.length];
+        System.arraycopy(array, 0, resultArray, 0, array.length);
+        length = 0;
+    }
+
+    public void printSort() {
+        System.out.print("Original Array is    :");
+        for (int i : inputArray) {
             System.out.print(i);
             System.out.print(",");
         }
-        System.out.print("\n ");
+        System.out.println("\n");
+        System.out.print("Merge Sort result is :");
+        for (int i : resultArray) {
+            System.out.print(i);
+            System.out.print(",");
+        }
+        System.out.println();
     }
 
-    public void sort(int inputArr[]) {
-        this.resultArray = inputArr;
+    public void sort(int[] inputArr) {
+        this.inputArray = inputArr;
         this.length = inputArr.length;
         this.tempArray = new int[length];
         spliter(0, length - 1);
