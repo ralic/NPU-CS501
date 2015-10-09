@@ -3,32 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs501hw2q4_mergesort;
+package CS501HW3Q4;
 
 /**
  *
  * @author raliclo
  */
-public class CS501HW2Q4_MergeSort {
+public class MergeSort2D {
 
-    private static int[] inputArray;
-    private static int[] resultArray;
+    private int[][] inputkvArray;
+    private int[][] outputkvArray;
+    private int[] inputArray;
+    private int[] resultArray;
     private int[] tempArray;
     private int length;
 
-    public static void main(String a[]) {
-
-        int[] array = {95, 70, 82, 125, 48, 63, 18, 53};
-        CS501HW2Q4_MergeSort mms = new CS501HW2Q4_MergeSort(array);
-        mms.sort(array);
-        mms.printSort();
-    }
-
-    public CS501HW2Q4_MergeSort(int[] array) {
-        inputArray = array;
+    public MergeSort2D(int[][] array) {
+        inputkvArray = new int[2][array.length];
+        outputkvArray = new int[2][array.length];
+        inputArray = array[0];
+        length = array.length;
         resultArray = tempArray = new int[array.length];
-        System.arraycopy(array, 0, resultArray, 0, array.length);
-        length = 0;
     }
 
     public void printSort() {
@@ -46,9 +41,11 @@ public class CS501HW2Q4_MergeSort {
         System.out.println();
     }
 
-    public void sort(int[] inputArr) {
-        this.inputArray = inputArr;
-        this.length = inputArr.length;
+    public void sort(int[] array) {
+        inputArray = array;
+        this.length = array.length;
+        System.arraycopy(array, 0, resultArray, 0, array.length);
+        this.tempArray = new int[length];
         spliter(0, length - 1);
     }
 
@@ -111,6 +108,34 @@ public class CS501HW2Q4_MergeSort {
             i++;
         }
 
+    }
+
+    /**
+     * @return the inputArray
+     */
+    public int[] getInputArray() {
+        return inputArray;
+    }
+
+    /**
+     * @return the resultArray
+     */
+    public int[] getResultArray() {
+        return resultArray;
+    }
+
+    /**
+     * @return the inputkvArray
+     */
+    public int[][] getInputkvArray() {
+        return inputkvArray;
+    }
+
+    /**
+     * @return the outputkvArray
+     */
+    public int[][] getOutputkvArray() {
+        return outputkvArray;
     }
 }
 
