@@ -11,107 +11,14 @@ package cs501hw2q4_mergesort;
  */
 public class CS501HW2Q4_MergeSort {
 
-    private static int[] inputArray;
-    private static int[] resultArray;
-    private int[] tempArray;
-    private int length;
-
     public static void main(String a[]) {
 
         int[] array = {95, 70, 82, 125, 48, 63, 18, 53};
-        CS501HW2Q4_MergeSort mms = new CS501HW2Q4_MergeSort(array);
+        MyMergeSort mms = new MyMergeSort(array);
         mms.sort(array);
         mms.printSort();
     }
 
-    public CS501HW2Q4_MergeSort(int[] array) {
-        inputArray = array;
-        resultArray = tempArray = new int[array.length];
-        System.arraycopy(array, 0, resultArray, 0, array.length);
-        length = 0;
-    }
-
-    public void printSort() {
-        System.out.print("Original Array is    :");
-        for (int i : inputArray) {
-            System.out.print(i);
-            System.out.print(",");
-        }
-        System.out.println("\n");
-        System.out.print("Merge Sort result is :");
-        for (int i : resultArray) {
-            System.out.print(i);
-            System.out.print(",");
-        }
-        System.out.println();
-    }
-
-    public void sort(int[] inputArr) {
-        this.inputArray = inputArr;
-        this.length = inputArr.length;
-        spliter(0, length - 1);
-    }
-
-    private void spliter(int leftIndex, int rightIndex) {
-//        System.out.println("> LeftIndex=" + leftIndex + ",RightIndex=" + rightIndex); // for debug
-        if (leftIndex < rightIndex) {
-            int middle = leftIndex + (rightIndex - leftIndex) / 2;
-//            System.out.println(" > middle=" + middle);
-            // Below step sorts the left side of the array
-//            System.out.println(" > Spliting " + leftIndex + " ~ " + middle + "to smaller array");
-            spliter(leftIndex, middle);
-            // Below step sorts the right side of the array
-//            System.out.println(" > Spliting " + (middle + 1) + " ~ " + rightIndex + "to smaller array");
-            spliter(middle + 1, rightIndex);
-            // Now merge both sides
-            merger(leftIndex, middle, rightIndex);
-        }
-    }
-
-    private void merger(int leftIndex, int middle, int rightIndex) {
-        // /*for debug
-//      System.out.println("tempArray[LeftIndex]=resultArray[leftIndex] from i= leftIndex to rightIndex");
-        // */fordebug
-        for (int i = leftIndex; i <= rightIndex; i++) {
-            // /* for debug
-//            System.out.println("tempArray[" + i + "]=" + tempArray[i] + "<= resultArray[" + i + "]=" + resultArray[i]);
-            // */ for debug
-            tempArray[i] = resultArray[i];
-        }
-        int i = leftIndex;
-        int j = middle + 1;
-        int k = leftIndex;
-        while (i <= middle && j <= rightIndex) {
-            if (tempArray[i] <= tempArray[j]) {
-                // /* fordebug
-//                System.out.println("Compare tempArray[" + i + "]" + "<=" + "tempArray[" + j + "] is True");
-//                System.out.println("tempArray[" + i + "]=" + tempArray[i] + "=> resultArray[" + k + "]=" + resultArray[k]);
-                // */ for debug
-                resultArray[k] = tempArray[i];
-                i++;
-            } else {
-                // /* fordebug
-//                System.out.println("Compare tempArray[" + i + "]" + "<=" + "tempArray[" + j + "] is false");
-//                System.out.println("tempArray[" + i + "]=" + tempArray[i] + "=> resultArray[" + k + "]=" + resultArray[k]);
-                // */ for debug
-                resultArray[k] = tempArray[j];
-//                System.out.println("j++ : middlepoint move one more index:" + j + "=>" + (j + 1));
-                // */ for debug
-                j++;
-            }
-            k++;
-        }
-
-        while (i <= middle) {
-            // */ for debug
-//            System.out.println("tempArray[" + i + "]=" + tempArray[i] + "=> resultArray[" + k + "]=" + resultArray[k]);
-            // */ for debug
-            resultArray[k] = tempArray[i];
-            k++;
-            i++;
-        }
-
-    }
 }
 
 /*
