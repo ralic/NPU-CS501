@@ -14,7 +14,7 @@ public class HeapSort {
         int[] array = {12, 8, 22, 10, 17, 15, 32, 24};
 //        int[] array = {16, 14, 10, 8, 7, 9, 3, 2, 4, 1, 5};
 //        int[] array = {16, 14, 10, 8, 7, 9, 3, 20, 4, 1, 5};
-        System.out.println("Original Array :");
+        System.out.print("Original Array :");
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");
         }
@@ -28,6 +28,7 @@ public class HeapSort {
         int[] array3 = {16, 14, 10, 8, 7, 9, 3, 2, 4, 1, 5};
         maxHeapInsert(array3, 12);
 
+        System.out.println();
     }
 
     private static int[] a;
@@ -41,7 +42,7 @@ public class HeapSort {
         a = a0;
         System.out.println("\nStarting to buildMaxHeap");
         buildMaxHeap(a);
-        System.out.println("\nAfter buildMaxHeap Array :");
+        System.out.print("\nAfter buildMaxHeap Array :");
         for (int i = 0; i < a.length; i++) {
             System.out.print(a[i] + " ");
         }
@@ -100,7 +101,7 @@ public class HeapSort {
     public static void heapIncreaseKey(int[] b, int index, int newKey) {
         counter = 0;
         a = b;
-        System.out.println("\nheapIncreaseKey Index:" + index + " from " + a[index - 1] + " to " + newKey);
+        System.out.println("\nQ3: heapIncreaseKey \nChange Index:" + index + " Priority from " + a[index - 1] + " to " + newKey);
         a[index] = newKey;
         // Reconstruct maxheap.
         System.out.println("Then Rebuild MaxHeap Array");
@@ -115,7 +116,7 @@ public class HeapSort {
 
     public static void maxHeapInsert(int[] b, int newKey) {
 
-        System.out.println("\nmaxHeapInsert Key:" + newKey);
+        System.out.println("\nQ4:maxHeapInsert Key:" + newKey);
         System.out.println("Then Rebuild MaxHeap Array");
         counter = 0;
         a = Arrays.copyOf(b, (b.length + 1));
@@ -129,11 +130,24 @@ public class HeapSort {
         for (int i = 0; i < a.length; i++) {
             System.out.print(a[i] + " ");
         }
-        System.out.println();
     }
 
 }
 /*
+1. [5 Pts] For the heap binary tree structure, the examples in the textbook use index 1 to represent
+ the root node. Then, the parent node is said to be at  [i/2], left-child at 2i, and right-child at
+ 2i + 1.
+
+In actual programing implementation, the first array element has index 0.
+a) Show that the formulas are not valid (need some adjustment) when the root node index is 0
+
+ANS >> The last element n elements would have index as "n-1" and cause out of bound.
+
+b) What are the new formulas for finding the array index for the parent, the left-child, and the
+right-child for a node at position  in the array
+
+ANS >> Use  n = array.length-1 before we use left-child and right-child.
+
 2.	[25 Pts] Write a program in Java that performs the Heapsort algorithm.
 a) Create the maxHeapify method. Use the pseudocode shown in the lecture and the adjustment to the formulas that you figured out in problem 1.
 b) Implement the buildMaxHeap method and the heapSort method.
