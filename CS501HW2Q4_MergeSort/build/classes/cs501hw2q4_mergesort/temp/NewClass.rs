@@ -1,3 +1,0 @@
-cs501hw2q4_mergesort.test
-cs501hw2q4_mergesort.CS501HW2Q4_MergeSort
-cs501hw2q4_mergesort.NewClass
