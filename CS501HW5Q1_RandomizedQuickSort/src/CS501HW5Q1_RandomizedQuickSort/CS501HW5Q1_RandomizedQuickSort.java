@@ -33,58 +33,49 @@ public class CS501HW5Q1_RandomizedQuickSort {
 //  II. The sub-arrays after each of the randomizedPartition calls has completed
 //  III. The final sorted array after performing the Quicksort algorithm
     }
-    private static final Logger LOG = Logger.getLogger(CS501HW5Q1_RandomizedQuickSort.class.getName());
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException {
-        try {
-            /**
-             * @param speedX to monitor program runtime
-             */
-            // TODO code application logic here
-            runexec("pwd");
-            Thread.sleep(500);
-            int[] array = {4, 1, 3, 2, 16, 9, 10, 14, 8, 7};
-            int[] array2 = Arrays.copyOf(array, array.length);
-            long speedX = System.currentTimeMillis();
-            // Print all elemetns as original
-            System.out.println("I. The original input array");
-            IntStream.of(array).forEach(p -> System.out.print(p + ","));
 
-            // Print all elements after randomizedPartition
-            System.out.println("\nTesting swap(array, 0, 4)");
-            IntStream.of(swap(array, 0, 4)).forEach(p -> System.out.print(p + ","));
-            System.out.println();
+        int[] array = {4, 1, 3, 2, 16, 9, 10, 14, 8, 7};
+        int[] array2 = Arrays.copyOf(array, array.length);
+        long speedX = System.currentTimeMillis();
+        // Print all elemetns as original
+        System.out.println("I. The original input array");
+        IntStream.of(array).forEach(p -> System.out.print(p + ","));
 
-            System.out.println("\nTesting partition(array, 7, array.length)");
-            System.out.println("Partion Index=" + partition(array, 7, array.length - 1) + " Array after partition:");
-            IntStream.of(array).forEach(p -> System.out.print(p + ","));
-            System.out.println();
+        // Print all elements after randomizedPartition
+        System.out.println("\nTesting swap(array, 0, 4)");
+        IntStream.of(swap(array, 0, 4)).forEach(p -> System.out.print(p + ","));
+        System.out.println();
 
-            System.out.println("\nTesting randomizedPartition(array, 0, array.length-1)");
-            randomizedPartition(array, 0, array.length - 1);
-            IntStream.of(array).forEach(p -> System.out.print(p + ","));
-            System.out.println();
+        System.out.println("\nTesting partition(array, 7, array.length)");
+        System.out.println("Partion Index=" + partition(array, 7, array.length - 1) + " Array after partition:");
+        IntStream.of(array).forEach(p -> System.out.print(p + ","));
+        System.out.println();
 
-            System.out.println("\nTesting myquicksort(array, 0, array.length-1)");
-            myquicksort(array, 0, array.length - 1);
-            IntStream.of(array).forEach(p -> System.out.print(p + ","));
-            System.out.println();
+        System.out.println("\nTesting randomizedPartition(array, 0, array.length-1)");
+        randomizedPartition(array, 0, array.length - 1);
+        IntStream.of(array).forEach(p -> System.out.print(p + ","));
+        System.out.println();
 
-            System.out.println("I. The original input array");
-            IntStream.of(array2).forEach(p -> System.out.print(p + ","));
+        System.out.println("\nTesting myquicksort(array, 0, array.length-1)");
+        myquicksort(array, 0, array.length - 1);
+        IntStream.of(array).forEach(p -> System.out.print(p + ","));
+        System.out.println();
 
-            System.out.println("\nTesting randomizedQuicksort(array2, 0, array.length-1)");
-            randomizedQuicksort(array2, 0, array.length - 1);
-            System.out.println("Final Sorted Array:");
-            IntStream.of(array2).forEach(p -> System.out.print(p + ","));
+        System.out.println("I. The original input array");
+        IntStream.of(array2).forEach(p -> System.out.print(p + ","));
 
-            System.out.println("\nTime spent :" + (System.currentTimeMillis() - speedX));
-        } catch (IOException ex) {
-            Logger.getLogger(CS501HW5Q1_RandomizedQuickSort.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        System.out.println("\nTesting randomizedQuicksort(array2, 0, array.length-1)");
+        randomizedQuicksort(array2, 0, array.length - 1);
+        System.out.println("Final Sorted Array:");
+        IntStream.of(array2).forEach(p -> System.out.print(p + ","));
+
+        System.out.println("\nTime spent :" + (System.currentTimeMillis() - speedX));
+
     }
 
     {
@@ -99,8 +90,7 @@ is expected to be reasonably well balanced
 **/
     }
 
-    {
-        /* Pseudo Code
+    {/* Pseudo Code
  The pseudocode for the randomized partition: randomizedPartition(A,p,r)
     1 i = random(p,r) 
     2 exchange A[r]with A[i]  
@@ -236,33 +226,6 @@ is expected to be reasonably well balanced
             int q = partition(A, p, r);
             myquicksort(A, p, q - 1);
             myquicksort(A, p + 1, r);
-        }
-    }
-
-    /**
-     * @param x for command line
-     * @throws java.io.IOException
-     */
-    public static void runexec(String x) throws IOException {
-        final Process p = Runtime.getRuntime().exec(x);
-//-------------lambda Codes to print InputStream-------------
-        new Thread(() -> {
-            BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String line = null;
-            try {
-                while ((line = input.readLine()) != null) {
-                    System.out.println(line);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }).start();
-        try {
-            p.waitFor();
-
-        } catch (InterruptedException ex) {
-            Logger.getLogger(CS501HW5Q1_RandomizedQuickSort.class
-                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
