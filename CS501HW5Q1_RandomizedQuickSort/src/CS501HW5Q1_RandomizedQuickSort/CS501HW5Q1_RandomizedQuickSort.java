@@ -18,6 +18,7 @@ import java.util.stream.IntStream;
 /**
  *
  * @author raliclo
+ * @version Please compile under JDK 8u66 +
  */
 public class CS501HW5Q1_RandomizedQuickSort {
 
