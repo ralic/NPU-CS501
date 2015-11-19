@@ -42,21 +42,24 @@ public class RunTimeExec {
      * @throws java.io.IOException
      */
     public static void runexec(String x) throws IOException {
-        //final 
         Process p = Runtime.getRuntime().exec(x);
-//-------------lambda Codes-------------
-        new Thread(() -> {
-            BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String line = null;
-// Print out input stream.
-            try {
-                while ((line = input.readLine()) != null) {
-                    System.out.println(line);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+        BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        String line = null;
+        try {
+            while ((line = input.readLine()) != null) {
+                System.out.println(line);
             }
-        }).start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            p.waitFor();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(RunTimeExec.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
+
 //-------------Original Codes-------------
 //        Process p2 = Runtime.getRuntime().exec(x);
 //        new Thread(new Runnable() {
@@ -74,11 +77,8 @@ public class RunTimeExec {
 //            }
 //        }).start();
 // Wait for.
-        try {
-            p.waitFor();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(RunTimeExec.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-}
+//  try {
+//            p.waitFor();
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(RunTimeExec.class.getName()).log(Level.SEVERE, null, ex);
+//        }
