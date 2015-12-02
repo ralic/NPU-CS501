@@ -116,31 +116,39 @@ should do the followings:
         System.out.print("#Testing myBSTmin from root:");
         System.out.println(bst1.myBSTmin(bst1.root));
         System.out.print("#Testing myBSTmin from A[3]:");
-        System.out.println(bst1.myBSTmin(searched));
+        System.out.println(bst1.myBSTmin(searched).key);
 
         System.out.print("#Testing myBSTmax from root:");
         System.out.println(bst1.myBSTmax(bst1.root));
         System.out.print("#Testing myBSTmax from A[3]:");
-        System.out.println(bst1.myBSTmax(searched));
+        System.out.println(bst1.myBSTmax(searched).key);
         System.out.println();
 
         System.out.println("#Testing myBSTmin from node.key=10:");
         System.out.println("Minimum from node.key = 10 is [The result]");
-        System.out.println("[The result]:" + bst1.myBSTmin(bst1.myiterativeBSTSearch(bst1.root, 9)));
+        System.out.println("[The result]:" + bst1.myBSTmin(bst1.myiterativeBSTSearch(bst1.root, 9)).key);
         System.out.println();
 
-        System.out.println("# Testing myBSTsuccessor on root.key ");
-        System.out.println("Successor to the root node is [The result] ");
-        bst1.myBSTsuccessor(bst1.root.key);  // with an input, it will return result.
+        System.out.println("# Testing myBSTnextLevel on root.key ");
+        System.out.println("Next Level to the root node is [The result] ");
+        bst1.myBSTnextLevel(bst1.root.key);
         System.out.println();
 
-        System.out.println("# Testing myBSTsuccessor on node.key=9");
-        System.out.println("Successor to the node.key = 9 is [The result]");
-        bst1.myBSTsuccessor(9);  // with an input, it will return result.
+        System.out.println("# Testing myBSTnextLevel on node.key=9");
+        System.out.println("Next Level to the node.key = 9 is [The result]");
+        bst1.myBSTnextLevel(9);
         System.out.println();
 //
 //        System.out.println("Testing printTree");
 //        bst1.printTree();
+
+        System.out.println("# Testing myBSTsuccessor on root.key ");
+        System.out.println("Successor to the root node is [The result] ");
+        System.out.println(bst1.myBSTsuccessor(bst1.root.key));
+
+        System.out.println("# Testing myBSTsuccessor on node.key=9");
+        System.out.println("Successor to the node.key = 9 is [The result]");
+        System.out.println(bst1.myBSTsuccessor(9));
 
         System.out.println("Time spent :" + (System.currentTimeMillis() - speedX));
     }

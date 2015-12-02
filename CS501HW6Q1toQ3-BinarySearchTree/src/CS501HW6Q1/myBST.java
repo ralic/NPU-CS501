@@ -65,7 +65,7 @@ walk, starting from any given node
     /**
      * @Goal : Insertion Method from the root
      * @Input : myNode z
-     * @Ouput : Add a branch
+     * @Ouput : Add a branch and build the binary search tree
      * @Status: Completed
      * @Pseudo:
      */
@@ -110,32 +110,6 @@ walk, starting from any given node
         }
     }
 
-    public void myBSTinsert_Root2(myNode z) {
-        this.elements++;
-        myNode y = null;
-        myNode x = this.root;
-        while (x.key != null) {
-            System.out.println("hihi1");
-            y = x;
-            if (z.key < x.key) {
-                x = x.left;
-            } else {
-                x = x.right;
-            }
-        }
-        z.parent = y;
-        if (y == null) {
-            System.out.println("hihi2");
-            this.root = z;
-        } else if (z.key < y.key) {
-            System.out.println("hihi3");
-            y.left = z;
-        } else {
-            System.out.println("hihi4");
-            y.right = z;
-        }
-    }
-
     public myNode myBSTinsert_Tail(myNode x) {
         this.elements++;
 //        System.out.println("Receiving newNode:" + x.toString());
@@ -176,12 +150,12 @@ walk, starting from any given node
     }
 
     /**
-     * @Goal :
-     * @Input :
-     * @Ouput :
-     * @Status :
+     * @Goal : Show child elements of an Integer array value
+     * @Input : Integer k
+     * @Ouput : print the child
+     * @Status:
      */
-    public void myBSTsuccessor(Integer k) {
+    public void myBSTnextLevel(Integer k) {
         System.out.println("Searching key :" + k);
         myNode searched = this.myiterativeBSTSearch(this.root, k);
         int z = 0; // switching
@@ -190,16 +164,16 @@ walk, starting from any given node
         switch (z) {
             case 0:
                 System.out.println("[The result]:Both Right & Left successor founded");
-                System.out.println("-Left Successor: " + searched.left.key + " @BSTlevel" + searched.left.BSTlevel);
-                System.out.println("-Right Successor: " + searched.right.key + " @BSTlevel" + searched.right.BSTlevel);
+                System.out.println("-Left child : " + searched.left.key + " @BSTlevel" + searched.left.BSTlevel);
+                System.out.println("-Right child: " + searched.right.key + " @BSTlevel" + searched.right.BSTlevel);
                 break;
             case 1:
                 System.out.println("[the result]:Only Right successor founded");
-                System.out.println("-Right Successor: " + searched.right.key + " @BSTlevel" + searched.right.BSTlevel);
+                System.out.println("-Right child: " + searched.right.key + " @BSTlevel" + searched.right.BSTlevel);
                 break;
             case 2:
                 System.out.println("[The result]:Only Left successor founded");
-                System.out.println("-Left Successor: " + searched.left.key + " @BSTlevel" + searched.left.BSTlevel);
+                System.out.println("-Left child: " + searched.left.key + " @BSTlevel" + searched.left.BSTlevel);
                 break;
             case 3:
                 System.out.println("[The result]:No successor founded");
@@ -215,11 +189,11 @@ walk, starting from any given node
      * @Ouput : myNode
      * @Status :
      */
-    public Integer myBSTmin(myNode x) {
+    public myNode myBSTmin(myNode x) {
         while (x.left != null) {
             x = x.left;
         }
-        return x.key;
+        return x;
     }
 
     /**
@@ -228,11 +202,11 @@ walk, starting from any given node
      * @Ouput : myNode
      * @Status :
      */
-    public Integer myBSTmax(myNode x) {
+    public myNode myBSTmax(myNode x) {
         while (x.right != null) {
             x = x.right;
         }
-        return x.key;
+        return x;
     }
 
     public void myinorderTreeWalk(myNode x) {
@@ -251,7 +225,7 @@ walk, starting from any given node
     }
 
     /**
-     * @Goal : Implentation of
+     * @Goal :
      * @Input :
      * @Ouput :
      * @Status :
@@ -353,6 +327,22 @@ walk, starting from any given node
      * @Status: Under Development
      */
     public void myBSTreverse() {
+    }
+
+    /**
+     * @Goal : Find the successor of a value
+     * @Input : Integer i
+     * @Ouput : the node
+     * @Status: Completed
+     * @Pseudo: if the right child is not null, the mininum is the child.
+     */
+    public myNode myBSTsuccessor(Integer i) {
+        myNode x = myiterativeBSTSearch(root, i);
+        if (x.right == null) {
+            return null;
+        } else {
+            return myBSTmin(x.right);
+        }
     }
 
 }
