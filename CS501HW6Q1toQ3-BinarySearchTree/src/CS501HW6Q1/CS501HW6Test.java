@@ -151,10 +151,12 @@ should do the followings:
         bst1.myinorderTreeWalk(bst1.root);
 //        bst1.printTree();
         System.out.println("\n");
-        System.out.println("# Testing myBSTdelete on 15 ");
-        bst1.myBSTdelete(15);
+        int n = 22;
+        System.out.println("# Testing myBSTdelete on  " + n);
+        bst1.myBSTdelete(n);
         bst1.myinorderTreeWalk(bst1.root);
-        bst1.printTree();
+
+//        bst1.printTree();
 //        System.out.println("Testing printTree");
 //        bst1.printTree();
         System.out.println("Time spent :" + (System.currentTimeMillis() - speedX));
