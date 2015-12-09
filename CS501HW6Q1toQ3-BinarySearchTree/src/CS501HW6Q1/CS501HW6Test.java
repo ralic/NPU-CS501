@@ -138,9 +138,6 @@ should do the followings:
         System.out.println("Next Level to the node.key = 9 is [The result]");
         bst1.myBSTnextLevel(9);
         System.out.println();
-//
-//        System.out.println("Testing printTree");
-//        bst1.printTree();
 
         System.out.println("# Testing myBSTsuccessor on root.key ");
         System.out.println("Successor to the root node is [The result] ");
@@ -150,9 +147,16 @@ should do the followings:
         System.out.println("Successor to the node.key = 9 is [The result]");
         System.out.println(bst1.myBSTsuccessor(9));
 
-        System.out.println("# Testing myBSTdelete on root.key ");
-//        bst1.myBSTdelete(bst1.root.key);
+        System.out.println("# Testing inorderTreeWalk from root :");
+        bst1.myinorderTreeWalk(bst1.root);
+//        bst1.printTree();
+        System.out.println("\n");
+        System.out.println("# Testing myBSTdelete on 15 ");
+        bst1.myBSTdelete(15);
+        bst1.myinorderTreeWalk(bst1.root);
         bst1.printTree();
+//        System.out.println("Testing printTree");
+//        bst1.printTree();
         System.out.println("Time spent :" + (System.currentTimeMillis() - speedX));
     }
 

@@ -75,9 +75,9 @@ walk, starting from any given node
         if (checker.key == null) {
             root.key = z.key;
             root.parent = z;
-            System.out.println("Initialize thse root key & Insertion from root every time");
-            System.out.print(" & root.toString" + root.toString());
-            System.out.println(" Tree level :" + root.BSTlevel);
+//            System.out.println("Initialize thse root key & Insertion from root every time");
+//            System.out.print(" & root.toString" + root.toString());
+//            System.out.println(" Tree level :" + root.BSTlevel);
         } else {
             myNode branch = new myNode();
             Integer level = 0;
@@ -85,15 +85,15 @@ walk, starting from any given node
                 level++;
                 branch.parent = checker;
                 if (z.key < checker.key) {
-                    System.out.println("Branch to the left");
+//                    System.out.println("Branch to the left");
                     if (checker.left == null) {
                         checker.left = branch;
                         checker = branch;
                     } else {
                         checker = checker.left;
                     }
-                } else {
-                    System.out.println("Branch to the right");
+                } else //                    System.out.println("Branch to the right");
+                {
                     if (checker.right == null) {
                         checker.right = branch;
                         checker = branch;
@@ -103,9 +103,11 @@ walk, starting from any given node
                 }
             }
             branch.key = z.key;
+            branch.left = z.left;
+            branch.right = z.right;
             branch.BSTlevel = level;
-            System.out.print(" & branch.toString" + branch.toString());
-            System.out.println(" Tree level :" + branch.BSTlevel);
+//            System.out.print(" & branch.toString" + branch.toString());
+//            System.out.println(" Tree level :" + branch.BSTlevel);
         }
     }
 
@@ -259,7 +261,7 @@ walk, starting from any given node
         myNode printer;
         if (root != null) {
             printer = root;
-            System.out.println("Setting printer at root ...");
+            System.out.println("\nSetting printer at root ...");
             printed = 0;
             printTree(printer);
         }
@@ -318,24 +320,32 @@ walk, starting from any given node
     public void myBSTdelete(Integer i) {
         myNode current = myiterativeBSTSearch(root, i);
         myNode successor = myBSTsuccessor(i);
+        System.out.println(current.toString());
+        System.out.println(successor.toString());
+// store current node in temp
+        myNode temp = new myNode();
+        temp.parent = current.parent;
+        temp.right = current.right;
+        temp.left = current.left;
+        temp.key = current.key;
 
+        // Replace current by successor
         // successor link to parent.
-        successor.parent.left = null; // cut off successor from current parent
+        successor.parent.left = null; // cut off successor from his parent
         successor.parent = current.parent; // connecting to new parent
+        // modified parent's configures.
         if (current.parent.right == current) {
             current.parent.right = successor;
         }
         if (current.parent.left == current) {
             current.parent.left = successor;
         }
-
-        // current left & right, reconnection.
-        current = null;
-        myNode temp = new myNode();
-        temp.right = current.right;
-        temp.left = current.left;
-        temp.key = current.key;
-        current = successor;
+        elements--;
+        //insert current.left and insert current.right
+        myBSTinsert_Root(current.left);
+        elements--;
+        myBSTinsert_Root(current.right);
+        elements--;
     }
 
     /**
