@@ -150,6 +150,9 @@ should do the followings:
         System.out.println("Successor to the node.key = 9 is [The result]");
         System.out.println(bst1.myBSTsuccessor(9));
 
+        System.out.println("# Testing myBSTdelete on root.key ");
+//        bst1.myBSTdelete(bst1.root.key);
+        bst1.printTree();
         System.out.println("Time spent :" + (System.currentTimeMillis() - speedX));
     }
 
