@@ -94,12 +94,14 @@ walk, starting from any given node
                             checker = checker.left;
                         }
                     } else //                    System.out.println("Branch to the right");
-                     if (checker.right == null) {
+                    {
+                        if (checker.right == null) {
                             checker.right = branch;
                             checker = branch;
                         } else {
                             checker = checker.right;
                         }
+                    }
                 }
                 branch.key = z.key;
                 branch.left = z.left;
@@ -319,24 +321,20 @@ walk, starting from any given node
      * @Goal : Delete a node from the tree
      * @Input : Integer x
      * @Ouput : New BST tree
-     * @Status: Under Development
+     * @Status : Under Development
+     * @Status : 12/10/2015 Good to delete any int value, including root key.
+     * @Status : 12/10 Good to delete root key once.CANNOT delete root key
+     * twice.
      */
     public void myBSTdelete(Integer i) {
         myNode current = myiterativeBSTSearch(root, i);
         myNode successor = myBSTsuccessor(i);
-        if (current == root) {
-            System.out.println("!! Not allow to delete root-- ");
-            System.exit(99);
-        }
-        if (current != null) {
-            // store current node in temp just in case.
-//        myNode temp = new myNode();
-//        temp.parent = current.parent;
-//        temp.right = current.right;
-//        temp.left = current.left;
-//        temp.key = current.key;
+        System.out.println(root);
+        System.out.println(current);
+        System.out.println(successor);
+//        System.out.println(successor);
+        if (current != null && current != root) {
             System.out.println("Deleting... value =" + i);
-            System.out.println(current.toString());
             if (successor == null) {
                 if (current.parent.right == current) {
                     current.parent.right = successor;
@@ -347,10 +345,7 @@ walk, starting from any given node
                 elements--;
             }
             if (successor != null) {
-                System.out.println(successor.toString());
                 // Replace current by successor
-                // successor link to parent.
-                successor.parent.left = null; // cut off successor from his parent
                 successor.parent = current.parent; // connecting to new parent
                 // modified parent's configures.
                 if (current.parent.right == current) {
@@ -371,6 +366,34 @@ walk, starting from any given node
                 elements--;
             }
         }
+        if (current == root) {
+            myNode temp = root;
+            if (successor != null) {
+                successor.parent.left = null;
+                root = successor;
+                root.parent = root;
+            }
+            //insert current.left and insert current.right
+            if (root.left != successor) {
+                myBSTinsert_Root(temp.left);
+                elements--;
+            }
+            if (root.right != successor) {
+                myBSTinsert_Root(temp.right);
+                elements--;
+            }
+
+        }
+        /*
+    
+            root.parent = null;
+            System.out.println(root.toString());
+            myNode temp = root.left;
+            System.out.println(temp.toString());
+            temp.parent = null;
+            successor.parent = null;
+            myBSTinsert_Root(temp);
+         */
     }
 
     /**

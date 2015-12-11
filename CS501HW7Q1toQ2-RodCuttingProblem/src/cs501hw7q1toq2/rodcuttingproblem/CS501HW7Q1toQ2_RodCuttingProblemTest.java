@@ -136,8 +136,8 @@ public class CS501HW7Q1toQ2_RodCuttingProblemTest {
         q2.callbacks = 0;
         /**
          * @Goal : Testing Dynamic programming with memoization by BottomUp
-         * @Status : n=5000,Time spent :570,callbacks:87654322
-         * @Status : n=10000,Time spent :55msec,callbacks:7654321
+         * @Status : n=87654321,Time spent :570,callbacks:87654322
+         * @Status : n=7654321,Time spent :55msec,callbacks:7654321
          */
 //        pi = ThreadLocalRandom.current().ints(1, 100).parallel().limit(87654321).toArray();// for maxN testing.
         RodCuttingProblem q3 = new RodCuttingProblem(pi, di);

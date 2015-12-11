@@ -99,6 +99,7 @@ should do the followings:
          */
         // TODO code application logic here
         int[] A = {10, 15, 12, 7, 8, 5, 6, 9, 20, 18, 22};
+//        int[] A = {10};
 //        int[] A = ThreadLocalRandom.current().ints(10, 100).distinct().limit(10).toArray();
         long speedX = System.currentTimeMillis();
 
@@ -107,7 +108,7 @@ should do the followings:
         System.out.println("# Testing inorderTreeWalk from root :");
         bst1.myinorderTreeWalk(bst1.root);
         System.out.println("\n");
-
+//
         System.out.println("# Testing myiterativeBSTSearch from root, searching A[3]");
         myNode searched = bst1.myiterativeBSTSearch(bst1.root, A[3]);
         System.out.println("Searched.key:" + searched.key + "\tSearched.BSTlevel:" + searched.BSTlevel);
@@ -149,10 +150,24 @@ should do the followings:
 
         System.out.println("# Testing inorderTreeWalk from root :");
         bst1.myinorderTreeWalk(bst1.root);
-//        bst1.printTree();
-        System.out.println("\n");
-        int n = 22;
-        System.out.println("# Testing myBSTdelete on  " + n);
+//        bst1.printTree();;
+        int n = 10;
+        System.out.println("\n# Testing myBSTdelete on  " + n);
+        bst1.myBSTdelete(n);
+        bst1.myinorderTreeWalk(bst1.root);
+
+        n = 7;
+        System.out.println("\n# Testing myBSTdelete on  " + n);
+        bst1.myBSTdelete(n);
+        bst1.myinorderTreeWalk(bst1.root);
+
+        n = 22;
+        System.out.println("\n# Testing myBSTdelete on  " + n);
+        bst1.myBSTdelete(n);
+        bst1.myinorderTreeWalk(bst1.root);
+
+        n = 20;
+        System.out.println("\n# Testing myBSTdelete on  " + n);
         bst1.myBSTdelete(n);
         bst1.myinorderTreeWalk(bst1.root);
 
