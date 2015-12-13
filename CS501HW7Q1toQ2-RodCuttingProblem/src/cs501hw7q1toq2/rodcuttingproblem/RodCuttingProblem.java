@@ -90,6 +90,7 @@ public class RodCuttingProblem {
     int memoizedCutRod_BottomUp(int n) {
         callbacks++;
         if (answers[n] > 0) {
+            callbacks++;
             return answers[n];
         }
         int profit = Integer.MIN_VALUE; // local mininum
@@ -106,6 +107,7 @@ public class RodCuttingProblem {
         cutpieces = new int[n + 1];
         callbacks++;
         if (answers[n] > 0) {
+            callbacks++;
             return answers[n];
         }
         int i, j;
