@@ -70,6 +70,7 @@ public class RodCuttingProblem {
     int memoizedCutRod_TopDown(int n) { // TOP DOWN
         callbacks++;
         if (answers[n] > 0) {
+            callbacks++;
             return answers[n];
         }
 // STANDARD JAVA 
